@@ -4,22 +4,22 @@
   </div>
 
 </template>
-
+ 
 <script>
 
 
   export default {
     name: 'App',
-      directives:{
-    color:{
-      bind(el,binding){
-       
-      },
-      inserted(el,binding){
-        el.style.color=binding.value
+    directives: {
+      color: {
+        bind(el, binding) {
+
+        },
+        inserted(el, binding) {
+          el.style.color = binding.value
+        }
       }
     }
-  }
 
   }
 </script>
@@ -31,6 +31,7 @@
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */
   color: #2c3e50;
-  /* margin-top: 60px; */
+  margin: 20px;
+  /* width: 100%; */
 }
 </style>

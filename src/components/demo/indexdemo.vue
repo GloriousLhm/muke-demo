@@ -1,103 +1,91 @@
 <template>
   <div>
-    这是首页
-    <div class="one">
-      <ul>
-        <router-link to="/">
-          <li>去往首页</li>
-        </router-link>
-        <router-link to="/avue">
-          <li>去往avue</li>
-        </router-link>
-        <a href="">
-          <li>去往bvue</li>
-        </a>
-        <a href="">
-          <li>去往cvue</li>
-        </a>
-        <a href="">
-          <li>去往dvue</li>
-        </a>
-      </ul>
-    </div>
-    <div class="two">
-      <!-- <input v-on:keydown.13="onkeydown"> -->
-      <button>addItime</button>
-      <input v-model="myValue"> {{myValue}}
-      <input v-model="myBox" type="radio" value="apple">
-      <input v-model="myBox" type="radio" value="banana">
-      <input v-model="myBox" type="radio" value="pinaapple"> {{myBox}}
 
-      <!-- <input v-model="myBox" type="checkbox" value="apple">
-      <input v-model="myBox" type="checkbox" value="banana">
-      <input v-model="myBox" type="checkbox" value="pinaapple"> {{myBox}} -->
-      <select v-model="selection">
-        <!-- 必须value有值才可以进行双向数据的绑定 -->
-        <option v-for="item in selectOption" :value="item.value">{{item.text}}</option>
-      </select>
-      {{selection}}
+    <headered></headered>
+
+    <home></home>
+    <p>这是demo的主页</p>
+    <father></father>
+
+    <!-- watch的使用 -->
+    <div class="watch">
+      <input type="text" v-model="person.money"> {{msg}}
+      <input type="text" v-model="msg">
     </div>
-    <comA @my-event="onComaMyevent"></comA>
-    <hr>
-    <input type="text" v-model="myValue"> {{myComputedWithNum}}
+
+    <!--自定义指令 -->
+    <div class="directived">
+      <p v-color="'green'">此处是自定义指令</p>
+      <input type="text" v-focus>
+
+    </div>
+
+    <!-- 次处是路由相关的 -->
+
+    <router-link to="/routers">跳转到路由的页面</router-link>
+
+    <foot></foot>
   </div>
 </template>
 
 <script>
-  import comA from './indexchildren.vue'
+  // import Vue from 'vue'
+  // import "../../main.js"
+  // import directive from '../.././assets/commn/directives.js'
+  import father from './father.vue'
+  import home from './home.vue'
+  import headered from './header.vue'
+  import foot from './footer.vue'
+  // import son from './son.vue'
   export default {
     data() {
       return {
-        myValue: "",
-        myBox: [],
-        selection: null,
-        selectOption: [{
-          text: 'apple',
-          value: 0
-        }, {
-          text: 'banana',
-          value: 1
+        msg: "May是世界上最好的人",
+        person: {
+          name: "刘慧敏",
+          money: 100000
         }
-
-        ]
       }
     },
-    methods: {
-      onkeydown() {
-        alert(111)
-      },
-      onComaMyevent(parmfromA) {
-        alert(222 + "paraformA")
-      },
-      getmyValuewithoutNum() {
-
-      }    },
+    // directives: {
+    //   color: function(el, binding) {
+    //     // el就是当前绑定指令的元素
+    //     // binding 是一个对象 就是绑定的变量（例如字符串表达式什么的）
+    //     el.style.color = binding.value
+    //   }
+    // },
     components: {
-      comA
-    },
-    computed: {
-      myComputedWithNum() {
-        // return this.myValue.replace(/\d/g, "")
-        return Date.now()
-      }
+      father,
+      home,
+      headered,
+      foot
     },
     watch: {
-      myValue: function(val, oldval) {
-        console.log(val, oldval)
+      msg: function(newValue, oldValue) {
+        console.log(newValue, oldValue);
+        console.log("有人在太岁头上动土");
+      },
+      person: {
+        handler: function(nv, ov) {
+          console.log("有人动我钱，我给你拼了！！！");
+        },
+        deep: true,
+        immediate: true
       }
     }
   }
+
+
 </script>
+
 <style scoped>
-a:hover {
-  color: red;
-  /* text-decoration: underline; */
-  text-decoration: none;
+.watch {
+  margin: 10px;
 }
-a:focus {
-  color: #337ab7;
-  text-decoration: none;
+.directived {
+  width: 100%;
+  height: 200px;
+  border: 1px solid purple;
+  margin: 10px 0;
 }
 </style>
-
-

@@ -1,6 +1,8 @@
 <template>
   <div>
-    这是过渡中的avue
+    <p>这是详情页的组件</p>
+    <div>
+    </div>
   </div>
 </template>
 
@@ -10,9 +12,10 @@
       return {
 
       }
-    }
+    },
+    props: [""]
   }
 </script>
 
-<style scoped>
+<style>
 </style>

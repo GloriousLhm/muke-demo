@@ -1,37 +1,77 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import avue from '../components/demo/a.vue'
-import indexdemo from '../components/demo/indexdemo.vue'
-import bvue from '../components/demo/b.vue'
-import guodu from '../components/demo/guodu/index.vue'
+import Indexdemo from "../components/demo/indexdemo.vue";
+import Routers from '../components/demo/routers.vue'
+import RedRouters from '../components/demo/redRouter.vue'
 
 
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
+  // mode: "history",
+  routes: [
+    // {
+    //   // 重定向
+    //   path: "/",
+    //   redirect: '/routers'
+    // },
+    {
       path: '/',
-      name: "indexdemo",
-      component: indexdemo
-    }, {
-      path: '/avue',
-      name: "avue",
-      component: avue
+      name: "/",
+      component: Indexdemo
     },
     {
-      path: '/bvue',
-      name: "bvue",
-      component: bvue
-    },
-
-    {
-      path: '/guodu',
-      name: "guodu",
-      component: guodu
+      // 带有冒号的是属性
+      path: '/routers',
+      // path: '/routers/:color/detail/:type',
+      name: "/routers",
+      component: Routers,
+      children: [{
+        path: "red",
+        name: "red",
+        component: RedRouters
+      }]
     }
   ]
 })
+
+
+
+// 编程式导航
+
+// router.push()
+
+// router.beforEach(router.push(path))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // -----------------------------------------------------------------------------

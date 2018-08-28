@@ -56,7 +56,7 @@ img,
 input,
 button,
 textarea {
-  border: none;
+  /* border: none; */
   outline-style: none;
 }
 
